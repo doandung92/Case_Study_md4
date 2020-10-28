@@ -1,4 +1,5 @@
 <!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>
@@ -44,6 +45,7 @@
 </nav>
 
 <!--Home page style-->
+<!--background: url(../images/header-bg.jpg) no-repeat center top fixed;-->
 <header id="home" class="home">
     <div class="overlay sections">
         <div class="container">
@@ -51,16 +53,99 @@
                 <div class="wrapper">
                     <div class="col-md-6 col-md-offset-3">
                         <div class="home-details text-center">
-                            <div>
-                                <img class="rounded" width="300px" src="assets/images/codegym.jpg" alt="LogoImage"/>
+                            <div th:object="${users}">
+                                <img th:src="@{${users.avatar}}" width="300">
                             </div>
                             <br>
                             <div class="home-title">
-                                <h1><span>User Name</span></h1>
+                                <h2><span>
+                                    <th:block th:text="${users.getFullName()}">
+                                    </th:block>
+                                </span></h2>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                    Change Infomation
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="" method="post" style="color: #0b0b0b">
+                                                <div class="modal-body">
+                                                    <form action="">
+                                                        <table class="table" th:object="${users}">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>Full name</td>
+                                                                <td scope="row">
+                                                                    <input type="text" th:field="*{id}">
+                                                                    <input type="text" th:field="*{fullName}">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Address</td>
+                                                                <td scope="row">
+                                                                    <input type="text" th:field="*{address}">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Phone Number</td>
+                                                                <td scope="row">
+                                                                    <input type="text" th:field="*{phoneNumber}">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Email</td>
+                                                                <td scope="row">
+                                                                    <input type="text" th:field="*{email}">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Gender</td>
+                                                                <td scope="row">
+                                                                    <input type="text" th:field="*{gender}">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Job</td>
+                                                                <td scope="row">
+                                                                    <input type="text" th:field="*{job}">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Avatar</td>
+                                                                <td scope="row">
+                                                                    <input type="file" th:field="*{avatar}">
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="scroll-down">
-                                <h5>Scroll down to see more</h5>
+                                <h5>Pull down to see more</h5>
                                 <a href="#about"><i class="fa fa-angle-double-down"></i></a>
                             </div>
 
@@ -79,33 +164,47 @@
         <!-- Example row of columns -->
         <div class="row">
             <div class="wrapper">
-
                 <div class="col-md-6">
                     <div class="about-photo">
-                        <img src="assets/images/about.jpg" alt="About Image"/>
+                        <img th:src="@{${users.cover}}"/>
                     </div>
                 </div>
 
                 <div class="col-md-6">
+                    <h2>Contact with me ♥</h2>
                     <div class="heading about-content">
-                        <h3>About Me</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.</p>
-                        <div class="signature">
-                            <img src="assets/images/singnature.png" alt="signature"/>
-                        </div>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>Full name</td>
+                                <td scope="row" th:text="${users.getFullName()}"></td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td scope="row" th:text="${users.getAddress()}"></td>
+                            </tr>
+                            <tr>
+                                <td>Phone Number</td>
+                                <td scope="row" th:text="${users.getPhoneNumber()}"></td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td scope="row" th:text="${users.getEmail()}"></td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td scope="row" th:text="${users.getGender()}"></td>
+                            </tr>
+                            <tr>
+                                <td>Job</td>
+                                <td scope="row" th:text="${users.getJob()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <!--				<div class="scroll-down">-->
-        <!--					<h5>keep scrolling, there is still more to come.</h5>-->
-        <!--					<a href="#portfolio"><i class="fa fa-angle-double-down"></i></a>-->
-        <!--				</div>-->
-        <!--				-->
     </div> <!-- /container -->
 </section>
 <footer id="footer" class="footer">

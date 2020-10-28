@@ -1,6 +1,6 @@
 package com.example.demo.service.security;
 
-import com.example.demo.model.Users;
+import com.example.demo.model.user.Users;
 import com.example.demo.repo.security.ISecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

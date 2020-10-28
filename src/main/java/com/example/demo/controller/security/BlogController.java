@@ -1,12 +1,18 @@
 package com.example.demo.controller.security;
 
+import com.example.demo.model.user.Users;
+import com.example.demo.service.blog.IBlogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BlogController {
+    @Autowired
+    private IBlogService blogService;
     private String getPrincipal(){
 
         String userName = null;
@@ -19,8 +25,12 @@ public class BlogController {
         }
         return userName;
     }
-    @GetMapping( value = {"/","profile"})
-    public String profilePage(){
+    @GetMapping( value = {"/profile"})
+    public String profilePage(Model model){
+        Users users = blogService.findByUsersName(getPrincipal());
+        model.addAttribute("users",users);
+        System.out.println(users.getId());
+        System.out.println(users.getAvatar()+"-------");
         return "index";
     }
     @GetMapping("/homepage")
