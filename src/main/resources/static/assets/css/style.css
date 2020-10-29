@@ -497,7 +497,7 @@ textarea::-ms-input-placeholder
 /* For Home Section */
 
 .home{
-  background: url(../images/c0620k1-begin.jpg) no-repeat center top fixed;
+  /*background: url(../images/c0620k1-begin.jpg) no-repeat center top fixed;*/
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;

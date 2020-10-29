@@ -1,17 +1,17 @@
-package com.example.demo.service.blog;
+package com.example.demo.service.user;
 
 import com.example.demo.model.user.Users;
-import com.example.demo.repo.blog.IBlogRepo;
+import com.example.demo.repo.blog.IUsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class BlogService implements IBlogService{
+public class UsersService implements IUsersService {
 
     @Autowired
-    private IBlogRepo blogRepo;
+    private IUsersRepo blogRepo;
     @Override
     public Iterable<Users> findAll() {
         return blogRepo.findAll();

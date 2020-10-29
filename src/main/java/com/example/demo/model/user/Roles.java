@@ -1,6 +1,8 @@
-package com.example.demo.model;
+package com.example.demo.model.user;
 
+import lombok.Builder;
 import lombok.Data;
+import net.bytebuddy.implementation.bind.annotation.Default;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;

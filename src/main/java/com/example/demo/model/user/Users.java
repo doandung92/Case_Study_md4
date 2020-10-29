@@ -1,10 +1,6 @@
 package com.example.demo.model.user;
 
-import com.example.demo.model.Roles;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
@@ -25,7 +21,6 @@ public class Users {
     private Roles role;
 
     private String fullName;
-    private boolean status;
     private String phoneNumber;
     private String email;
     private String address;

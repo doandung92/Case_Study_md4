@@ -1,12 +1,11 @@
-package com.example.demo.service.blog;
+package com.example.demo.service.user;
 
 import com.example.demo.model.user.Users;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 
-public interface IBlogService {
+public interface IUsersService {
     Iterable<Users> findAll();
     Optional<Users> findById(Long id);
     void save (Users users);
