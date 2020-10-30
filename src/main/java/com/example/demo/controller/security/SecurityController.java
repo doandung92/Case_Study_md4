@@ -1,6 +1,5 @@
 package com.example.demo.controller.security;
 
-import com.example.demo.model.user.Roles;
 import com.example.demo.model.user.Users;
 import com.example.demo.service.role.IRoleService;
 import com.example.demo.service.user.IUsersService;
@@ -10,11 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.management.relation.Role;
-import java.sql.Timestamp;
 
 @Controller
 public class SecurityController {
@@ -48,7 +42,7 @@ public class SecurityController {
     }
     @GetMapping("/homepage")
     public String homePage(){
-        return "templateHomePage";
+        return "homepage";
     }
     @GetMapping("/admin")
     public String adminPage(){

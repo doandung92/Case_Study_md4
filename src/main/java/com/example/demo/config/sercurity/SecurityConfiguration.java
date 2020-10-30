@@ -30,8 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/","/profile/**").access("hasRole('USER')")
-                .antMatchers("/homePage/**").access("hasAnyRole('USER','ADMIN')")
-                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+                .antMatchers("/homEpage/**").access("hasAnyRole('USER','ADMIN')")
+                .antMatchers("admin/**").access("hasRole('ADMIN')")
                 .and().formLogin().loginPage("/login").successHandler(successHandle)
                 .and().exceptionHandling().accessDeniedPage("/notAuthor")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));

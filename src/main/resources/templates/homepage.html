@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <!-- saved from url=(0065)http://uxart.io/downloads/openlist-html/all-template/details.html -->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    abc
     <title>Mạng xã hội</title>
 
     <!-- Favicon -->
@@ -24,6 +24,9 @@
 
     <!--Theme Styles CSS-->
     <link rel="stylesheet" href="./templateHomePage_files/style.css" media="all">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -69,61 +72,18 @@
 <section class="min_container min_container_2">
     <div class="section_row">
         <div class="middle_section col">
-            <table style="background: white" border="1" cellpadding="10px">
-                <tr>
-                    <td>Người đăng</td>
-                </tr>
-                <tr>
-                    <td>Nội dung bài đăng</td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="abc.jpg" alt="">
-                        <h1>Ảnh</h1>
-                        <hr>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" placeholder="comment">
-                    </td>
-                    <td>
-                        <input type="submit" gửi>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        nội dung comment
-                    </td>
-                </tr>
-            </table>
-            <hr>
-            <table style="background: white" border="1" cellpadding="10px">
-                <tr>
-                    <td>Người đăng</td>
-                </tr>
-                <tr>
-                    <td>Nội dung bài đăng</td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="abc.jpg" alt="">
-                        <h1>Ảnh</h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" placeholder="comment">
-                    </td>
-                    <td>
-                        <input type="submit" gửi>
-                    </td>
-                <tr>
-                    <td>
-                        nội dung comment
-                    </td>
-                </tr>
-            </table>
+            <!--            bài đăng-->
+            <div class="border border-warning" style="background-color: whitesmoke">
+                <form th action="@{}" style="margin: 10px">
+                    <div class="form-group">
+                        <label>What are you thinking ???</label>
+                        <textarea name="content" id="content" style="width: 650px;height: 175px"></textarea>
+                        <label for="img">Image</label>
+                        <input type="file" id="img">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
 
         <!-- left side bar -->
@@ -258,5 +218,15 @@
 <script src="./templateHomePage_files/jquery.jqflipswitch.js.tải xuống"></script>
 <!-- Theme JS -->
 <script src="./templateHomePage_files/theme.js.tải xuống"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="../static/ckeditor/ckeditor.js"></script>
 </body>
 </html>
