@@ -81,15 +81,14 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="" method="post" style="color: #0b0b0b">
+                                            <form th:action="@{/users/edit}" method="post" style="color: #0b0b0b" enctype="multipart/form-data">
                                                 <div class="modal-body">
-                                                    <form action="">
                                                         <table class="table" th:object="${users}">
                                                             <tbody>
                                                             <tr>
                                                                 <td>Full name</td>
                                                                 <td scope="row">
-                                                                    <input type="text" th:field="*{id}">
+                                                                    <input type="text" th:field="*{id}" hidden>
                                                                     <input type="text" th:field="*{fullName}">
                                                                 </td>
                                                             </tr>
@@ -126,18 +125,17 @@
                                                             <tr>
                                                                 <td>Avatar</td>
                                                                 <td scope="row">
-                                                                    <input type="file" th:field="*{avatar}">
+                                                                    <input type="file" th:field="*{avatarFile}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Cover</td>
-                                                                <td scope="row">
-                                                                    <input type="file" th:field="*{cover}">
+                                                                <td>
+                                                                    <input type="text" th:field="*{userName}"hidden>
+                                                                    <input type="text" th:field="*{userPassword}" hidden>
                                                                 </td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
-                                                    </form>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-danger"
@@ -173,7 +171,7 @@
             <div class="wrapper">
                 <div class="col-md-6">
                     <div class="about-photo">
-                        <img th:src="@{${users.cover}}"/>
+                        <img th:src="@{${users.avatar}}"/>
                     </div>
                 </div>
 
@@ -217,7 +215,7 @@
         </div>
     </div> <!-- /container -->
 </section>
-<footer id="footer" class="footer">
+<footer id="footer" class="footer" style="background-color: #2e3133">
     <div class="container">
         <div class="row">
             <div class="col-md-12">

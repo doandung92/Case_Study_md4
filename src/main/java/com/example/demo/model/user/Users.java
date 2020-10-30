@@ -1,8 +1,11 @@
 package com.example.demo.model.user;
 
 import lombok.Data;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 
 @Entity
@@ -27,5 +30,9 @@ public class Users {
     private String gender;
     private String job;
     private String avatar;
-    private String cover;
+    private Timestamp createDate;
+    private Timestamp modifiedDate;
+
+    @Transient
+    private MultipartFile avatarFile;
 }

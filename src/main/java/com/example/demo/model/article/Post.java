@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.type.NClobType;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -18,4 +19,6 @@ public class Post {
 
     @ManyToOne
     private Users users;
+
+    private Timestamp createTime;
 }

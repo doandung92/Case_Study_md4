@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.management.relation.Role;
+import java.sql.Timestamp;
 
 @Controller
 public class SecurityController {
@@ -21,6 +22,12 @@ public class SecurityController {
     private IRoleService roleService;
     @Autowired
     private IUsersService blogService;
+
+    //Khai bao bien cloudinary
+    String mCloudName = "dtcimirzt";
+    String mApiKey = "997964747139867";
+    String mApiSecret = "aHfm4-P3L-byZX4H8SQqYUfmZvc";
+
     private String getPrincipal(){
 
         String userName = null;
@@ -33,24 +40,11 @@ public class SecurityController {
         }
         return userName;
     }
-    @GetMapping( value = {"/profile"})
+    @GetMapping( value = {"/profile","/"})
     public String profilePage(Model model){
         Users users = blogService.findByUsersName(getPrincipal());
         model.addAttribute("users",users);
         return "profile";
-    }
-    @GetMapping("/register")
-    public String registerForm(Model model){
-        model.addAttribute("users" ,new Users());
-        return "register";
-    }
-    @PostMapping("/register")
-    public String register(@ModelAttribute Users users){
-        String name = "ROLE_USER";
-        Roles roles = roleService.findByName(name);
-        users.setRole(roles);
-        blogService.save(users);
-        return "login";
     }
     @GetMapping("/homepage")
     public String homePage(){

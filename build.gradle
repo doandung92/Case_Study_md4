@@ -34,6 +34,10 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    // https://mvnrepository.com/artifact/com.cloudinary/cloudinary-http44
+    compile group: 'com.cloudinary', name: 'cloudinary-http44', version: '1.25.0'
+    // https://mvnrepository.com/artifact/com.cloudinary/cloudinary-core
+    compile group: 'com.cloudinary', name: 'cloudinary-core', version: '1.25.0'
 }
 test {
     useJUnitPlatform()
