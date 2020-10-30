@@ -54,7 +54,7 @@ public class SecurityController {
     }
     @GetMapping("/homepage")
     public String homePage(){
-        return "homePage";
+        return "templateHomePage";
     }
     @GetMapping("/admin")
     public String adminPage(){
