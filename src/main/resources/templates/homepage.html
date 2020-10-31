@@ -70,44 +70,75 @@
         <div class="middle_section col">
             <!--            bài đăng-->
             <div class="border border-warning" style="background-color: white; border-radius: 10px">
-                <form th:action="@{/post/create}" method="post"style="margin: 10px" >
+                <form th:action="@{/post/create}" method="post"style="margin: 10px" th:object="${post}" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>What are you thinking ???</label>
-                        <textarea name="content" id="content" style="width: 500px;height: 175px"></textarea>
-                        <label for="img">Image</label>
-                        <input type="file" id="img" name="img">
+                        <textarea th:field="*{content}" style="width: 500px;height: 175px"></textarea>
+                        <label >Image</label>
+                        <input type="file" th:field="*{imgFile}">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             <hr>
             <div class="border border-warning" style="background-color: white; border-radius: 10px">
-                <div style="margin: 20px">
-                    <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"
-                         width="70px" style="border-radius: 50%">
-                    <span><strong>Đặng Anh Văn</strong></span>
-                </div>
-                <div class="col" style="margin-top: 20px">
-                    <div>
-                        <div style="margin-top: 20px">
-                            <th:block>
-                                Đại ca lớp 1a
-                            </th:block>
-                        </div>
+                <div th:each="p:${posts}">
+                    <div style="margin: 20px">
+                        <img th:src="${p.users.getAvatar()}"
+                             width="70px" style="border-radius: 50%">
+                        <span><strong>
+                            <th:block th:text="${p.getUsers().getFullName()}"></th:block>
+                        </strong></span>
+                    </div>
+                    <div class="col" style="margin-top: 20px">
                         <div>
-                            <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"
-                                 width="500px" height="500px">
-                        </div>
-                        <hr>
-                        <div>
-                            <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"
-                                 width="20" height="20">
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="comment">
+                            <div style="margin-top: 20px">
+                                <th:block th:text="${p.getContent()}"></th:block>
+                            </div>
+                            <div>
+                                <img th:src="${p.getImg()}"
+                                     width="500px" height="500px">
+                            </div>
+                            <hr>
+                            <div>
+                                <img th:src="${p.getUsers().getAvatar()}"
+                                     width="20" height="20">
+                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="comment">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
+            <hr>
         </div>
+<!--            //abc-->
+<!--        <div class="border border-warning" style="background-color: white; border-radius: 10px">-->
+<!--            <div style="margin: 20px">-->
+<!--                <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"-->
+<!--                     width="70px" style="border-radius: 50%">-->
+<!--                <span><strong>Đặng Anh Văn</strong></span>-->
+<!--            </div>-->
+<!--            <div class="col" style="margin-top: 20px">-->
+<!--                <div>-->
+<!--                    <div style="margin-top: 20px">-->
+<!--                        <th:block>-->
+<!--                            Đại ca lớp 1a-->
+<!--                        </th:block>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"-->
+<!--                             width="500px" height="500px">-->
+<!--                    </div>-->
+<!--                    <hr>-->
+<!--                    <div>-->
+<!--                        <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"-->
+<!--                             width="20" height="20">-->
+<!--                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="comment">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
         <!-- left side bar -->
         <div class="col">

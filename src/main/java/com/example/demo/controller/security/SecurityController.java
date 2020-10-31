@@ -1,6 +1,8 @@
 package com.example.demo.controller.security;
 
+import com.example.demo.model.article.Post;
 import com.example.demo.model.user.Users;
+import com.example.demo.service.post.IPostService;
 import com.example.demo.service.role.IRoleService;
 import com.example.demo.service.user.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class SecurityController {
@@ -16,12 +19,17 @@ public class SecurityController {
     private IRoleService roleService;
     @Autowired
     private IUsersService blogService;
+    @Autowired
+            private IPostService postService;
 
     //Khai bao bien cloudinary
     String mCloudName = "dtcimirzt";
     String mApiKey = "997964747139867";
     String mApiSecret = "aHfm4-P3L-byZX4H8SQqYUfmZvc";
-
+    @ModelAttribute
+    public void showListPosts(Model model){
+        model.addAttribute("posts",postService.findAll());
+    }
     private String getPrincipal(){
 
         String userName = null;
@@ -41,7 +49,8 @@ public class SecurityController {
         return "profile";
     }
     @GetMapping("/homepage")
-    public String homePage(){
+    public String homePage(Model model){
+        model.addAttribute("post", new Post());
         return "homepage";
     }
     @GetMapping("/admin")
