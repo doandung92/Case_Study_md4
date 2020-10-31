@@ -6,7 +6,6 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    abc
     <title>Mạng xã hội</title>
 
     <!-- Favicon -->
@@ -39,11 +38,11 @@
 <nav class="header_area">
     <div class="custom_container">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo"><img
-                    src="./templateHomePage_files/logo.png" alt=""></a>
+            <a href="/homepage" class="brand-logo"><img
+                    src="./templateHomePage_files/logo.png"></a>
             <ul class="left_menu hide-on-med-and-down">
-                <li><a href="#">Home</a></li>
-                <li><a href="http://uxart.io/downloads/openlist-html/all-template/profile.html">Profile</a></li>
+                <li><a href="/homepage">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
             </ul>
             <ul class="right right_menu hide-on-med-and-down">
                 <li class="search_min">
@@ -51,17 +50,14 @@
                         <input placeholder="Search Here" type="text">
                         <a href="#" class="search_icon"></a>
                     </div>
-                </li>
-
-                </li>
-                <!-- Profile -->
+                    <!-- Profile -->
                 <li class="user_dropdown"><a class="dropdown-button"
-                                             href="http://uxart.io/downloads/openlist-html/all-template/details.html#!"
+                                             href="/profile"
                                              data-activates="dropdown1"><img
-                        src="./templateHomePage_files/profile-pic.png" alt="" class="circle p_2"></a>
+                        src="./templateHomePage_files/profile-pic.png" class="circle p_2"></a>
                     <ul id="dropdown1" class="dropdown-content">
-                        <li><a href="#l">My profile</a></li>
-                        <li><a href="#">Log out</a></li>
+                        <li><a href="/profile">My profile</a></li>
+                        <li><a href="/logout">Log out</a></li>
                     </ul>
                 </li>
             </ul>
@@ -73,16 +69,43 @@
     <div class="section_row">
         <div class="middle_section col">
             <!--            bài đăng-->
-            <div class="border border-warning" style="background-color: whitesmoke">
-                <form th action="@{}" style="margin: 10px">
+            <div class="border border-warning" style="background-color: white; border-radius: 10px">
+                <form th:action="@{/post/create}" method="post"style="margin: 10px" >
                     <div class="form-group">
                         <label>What are you thinking ???</label>
-                        <textarea name="content" id="content" style="width: 650px;height: 175px"></textarea>
+                        <textarea name="content" id="content" style="width: 500px;height: 175px"></textarea>
                         <label for="img">Image</label>
-                        <input type="file" id="img">
+                        <input type="file" id="img" name="img">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+            </div>
+            <hr>
+            <div class="border border-warning" style="background-color: white; border-radius: 10px">
+                <div style="margin: 20px">
+                    <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"
+                         width="70px" style="border-radius: 50%">
+                    <span><strong>Đặng Anh Văn</strong></span>
+                </div>
+                <div class="col" style="margin-top: 20px">
+                    <div>
+                        <div style="margin-top: 20px">
+                            <th:block>
+                                Đại ca lớp 1a
+                            </th:block>
+                        </div>
+                        <div>
+                            <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"
+                                 width="500px" height="500px">
+                        </div>
+                        <hr>
+                        <div>
+                            <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"
+                                 width="20" height="20">
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="comment">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

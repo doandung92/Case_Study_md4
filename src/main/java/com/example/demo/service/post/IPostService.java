@@ -5,5 +5,5 @@ import com.example.demo.model.article.Post;
 public interface IPostService {
     Iterable<Post> findAll();
     Post save(Post post);
-    Post remove(Long id);
+    void remove(Long id);
 }

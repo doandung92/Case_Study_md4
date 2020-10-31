@@ -66,10 +66,7 @@ public class UserController {
 
     @PostMapping("/edit")
     public String edit(@ModelAttribute Users users){
-
         MultipartFile avatarFile = users.getAvatarFile();
-
-
         try{
             File avFile= Files.createTempFile("temp", avatarFile.getOriginalFilename()).toFile();
             avatarFile.transferTo(avFile);
