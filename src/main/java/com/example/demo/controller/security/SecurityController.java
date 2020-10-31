@@ -12,13 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SecurityController {
     @Autowired
     private IRoleService roleService;
     @Autowired
-    private IUsersService blogService;
+    private IUsersService usersService;
     @Autowired
             private IPostService postService;
 
@@ -26,6 +27,10 @@ public class SecurityController {
     String mCloudName = "dtcimirzt";
     String mApiKey = "997964747139867";
     String mApiSecret = "aHfm4-P3L-byZX4H8SQqYUfmZvc";
+    @ModelAttribute
+    public void showListUsers(Model model){
+        model.addAttribute("listUser",usersService.findAll());
+    }
     @ModelAttribute
     public void showListPosts(Model model){
         model.addAttribute("posts",postService.findAll());
@@ -44,13 +49,14 @@ public class SecurityController {
     }
     @GetMapping( value = {"/profile","/"})
     public String profilePage(Model model){
-        Users users = blogService.findByUsersName(getPrincipal());
+        Users users = usersService.findByUsersName(getPrincipal());
         model.addAttribute("users",users);
         return "profile";
     }
     @GetMapping("/homepage")
     public String homePage(Model model){
         model.addAttribute("post", new Post());
+        model.addAttribute("mainUser",usersService.findByUsersName(getPrincipal()));
         return "homepage";
     }
     @GetMapping("/admin")

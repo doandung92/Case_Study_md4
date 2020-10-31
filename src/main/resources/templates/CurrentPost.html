@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mạng xã hội</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="http://uxart.io/downloads/openlist-html/all-template/images/favicon.png" type="image/x-icon">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="./templateHomePage_files/materialize.min.css">
+    <!-- Tooltip CSS -->
+    <link rel="stylesheet" href="./templateHomePage_files/balloon.min.css">
+    <!-- Icon CSS-->
+    <link rel="stylesheet" href="./templateHomePage_files/ionicons.min.css">
+    <link rel="stylesheet" href="./templateHomePage_files/font-awesome.min.css">
+    <link href="./templateHomePage_files/icon" rel="stylesheet">
+    <!-- Calendar CSS-->
+    <link rel="stylesheet" href="./templateHomePage_files/dcalendar.picker.css">
+
+    <!--Theme Styles CSS-->
+    <link rel="stylesheet" href="./templateHomePage_files/style.css" media="all">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<nav class="header_area">
+    <div class="custom_container">
+        <div class="nav-wrapper">
+            <a href="/homepage" class="brand-logo"><img
+                    src="./templateHomePage_files/logo.png"></a>
+            <ul class="left_menu hide-on-med-and-down">
+                <li><a href="/homepage">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+            <ul class="right right_menu hide-on-med-and-down">
+                <li class="search_min">
+                    <div class="search_from">
+                        <input placeholder="Search Here" type="text">
+                        <a href="#" class="search_icon"></a>
+                    </div>
+                    <!-- Profile -->
+                <li class="user_dropdown"><a class="dropdown-button"
+                                             href="/profile"
+                                             data-activates="dropdown1"><img
+                        src="./templateHomePage_files/profile-pic.png" class="circle p_2"></a>
+                    <ul id="dropdown1" class="dropdown-content">
+                        <li><a href="/profile">My profile</a></li>
+                        <li><a href="/logout">Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

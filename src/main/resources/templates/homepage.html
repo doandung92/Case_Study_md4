@@ -33,7 +33,7 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
-<body style="">
+<body>
 <!-- Header_Area -->
 <nav class="header_area">
     <div class="custom_container">
@@ -70,19 +70,21 @@
         <div class="middle_section col">
             <!--            bài đăng-->
             <div class="border border-warning" style="background-color: white; border-radius: 10px">
-                <form th:action="@{/post/create}" method="post"style="margin: 10px" th:object="${post}" enctype="multipart/form-data">
+                <form th:action="@{/post/create}" method="post" style="margin: 10px" th:object="${post}"
+                      enctype="multipart/form-data">
                     <div class="form-group">
                         <label>What are you thinking ???</label>
                         <textarea th:field="*{content}" style="width: 500px;height: 175px"></textarea>
-                        <label >Image</label>
+                        <label>Image</label>
                         <input type="file" th:field="*{imgFile}">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             <hr>
-            <div class="border border-warning" style="background-color: white; border-radius: 10px">
-                <div th:each="p:${posts}">
+            <div>
+                <div th:each="p:${posts}" class="border border-warning"
+                     style="background-color: white; border-radius: 10px; margin-top: 20px">
                     <div style="margin: 20px">
                         <img th:src="${p.users.getAvatar()}"
                              width="70px" style="border-radius: 50%">
@@ -95,126 +97,51 @@
                             <div style="margin-top: 20px">
                                 <th:block th:text="${p.getContent()}"></th:block>
                             </div>
-                            <div>
+                            <div th:if="${p.getImg()}">
                                 <img th:src="${p.getImg()}"
                                      width="500px" height="500px">
                             </div>
                             <hr>
                             <div>
-                                <img th:src="${p.getUsers().getAvatar()}"
-                                     width="20" height="20">
-                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="comment">
+                                <img th:src="${mainUser.getAvatar()}"
+                                     width="20" height="20" style="border-radius: 50%">
+                                <input type="text" class="form-control" id="exampleInputPassword1"
+                                       placeholder="comment">
                             </div>
+                            <div class="border border-warning" style="background-color: black">abc</div>
                         </div>
                     </div>
                 </div>
-                </div>
-            <hr>
+            </div>
         </div>
-<!--            //abc-->
-<!--        <div class="border border-warning" style="background-color: white; border-radius: 10px">-->
-<!--            <div style="margin: 20px">-->
-<!--                <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"-->
-<!--                     width="70px" style="border-radius: 50%">-->
-<!--                <span><strong>Đặng Anh Văn</strong></span>-->
-<!--            </div>-->
-<!--            <div class="col" style="margin-top: 20px">-->
-<!--                <div>-->
-<!--                    <div style="margin-top: 20px">-->
-<!--                        <th:block>-->
-<!--                            Đại ca lớp 1a-->
-<!--                        </th:block>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"-->
-<!--                             width="500px" height="500px">-->
-<!--                    </div>-->
-<!--                    <hr>-->
-<!--                    <div>-->
-<!--                        <img src="http://res.cloudinary.com/dtcimirzt/image/upload/v1604042313/fq92svfr65ezz8jklcei.jpg"-->
-<!--                             width="20" height="20">-->
-<!--                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="comment">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 
         <!-- left side bar -->
         <div class="col">
             <div class="left_side_bar">
-                <div class="categories">
+                <div class="categories" th:object="${mainUser}">
                     <h3 class="categories_tittle">Thông tin cá nhân</h3>
-
-                </div>
-
-                <div class="calendar_widget">
-                    <h3 class="categories_tittle">Calendar</h3>
-                    <table class="calendar">
-                        <div class="calendar-wrapper load" data-theme="blue">
-                            <section class="calendar-head-card"><span class="calendar-year">2020</span><span
-                                    class="calendar-date-wrapper" title="Select current date."><span
-                                    class="calendar-dayofweek">Thu</span>, <span class="calendar-month">Oct</span> <span
-                                    class="calendar-date">29</span></span></section>
-                            <div class="calendar-container">
-                                <section class="calendar-top-selector"><span class="calendar-prev">‹</span><span
-                                        class="calendar-curr-month">October 2020</span><span
-                                        class="calendar-next">›</span></section>
-                                <section class="calendar-grid">
-                                    <div class="calendar-labels">
-                                        <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-                                    </div>
-                                    <div class="calendar-date-holder">
-                                        <section class="calendar-dates"><span class="cal-row"><span class="date pm"><a
-                                                href="javascript:void(0);">27</a></span><span class="date pm"><a
-                                                href="javascript:void(0);">28</a></span><span class="date pm"><a
-                                                href="javascript:void(0);">29</a></span><span class="date pm"><a
-                                                href="javascript:void(0);">30</a></span><span class="date"><a
-                                                href="javascript:void(0);">1</a></span><span class="date"><a
-                                                href="javascript:void(0);">2</a></span><span class="date"><a
-                                                href="javascript:void(0);">3</a></span></span><span
-                                                class="cal-row"><span class="date"><a
-                                                href="javascript:void(0);">4</a></span><span class="date"><a
-                                                href="javascript:void(0);">5</a></span><span class="date"><a
-                                                href="javascript:void(0);">6</a></span><span class="date"><a
-                                                href="javascript:void(0);">7</a></span><span class="date"><a
-                                                href="javascript:void(0);">8</a></span><span class="date"><a
-                                                href="javascript:void(0);">9</a></span><span class="date"><a
-                                                href="javascript:void(0);">10</a></span></span><span
-                                                class="cal-row"><span class="date"><a href="javascript:void(0);">11</a></span><span
-                                                class="date"><a href="javascript:void(0);">12</a></span><span
-                                                class="date"><a href="javascript:void(0);">13</a></span><span
-                                                class="date"><a href="javascript:void(0);">14</a></span><span
-                                                class="date"><a href="javascript:void(0);">15</a></span><span
-                                                class="date"><a href="javascript:void(0);">16</a></span><span
-                                                class="date"><a href="javascript:void(0);">17</a></span></span><span
-                                                class="cal-row"><span class="date"><a href="javascript:void(0);">18</a></span><span
-                                                class="date"><a href="javascript:void(0);">19</a></span><span
-                                                class="date"><a href="javascript:void(0);">20</a></span><span
-                                                class="date"><a href="javascript:void(0);">21</a></span><span
-                                                class="date"><a href="javascript:void(0);">22</a></span><span
-                                                class="date"><a href="javascript:void(0);">23</a></span><span
-                                                class="date"><a href="javascript:void(0);">24</a></span></span><span
-                                                class="cal-row"><span class="date"><a href="javascript:void(0);">25</a></span><span
-                                                class="date"><a href="javascript:void(0);">26</a></span><span
-                                                class="date"><a href="javascript:void(0);">27</a></span><span
-                                                class="date"><a href="javascript:void(0);">28</a></span><span
-                                                class="date current selected"><a
-                                                href="javascript:void(0);">29</a></span><span class="date"><a
-                                                href="javascript:void(0);">30</a></span><span class="date"><a
-                                                href="javascript:void(0);">31</a></span></span><span
-                                                class="cal-row"><span class="date nm"><a
-                                                href="javascript:void(0);">1</a></span><span class="date nm"><a
-                                                href="javascript:void(0);">2</a></span><span class="date nm"><a
-                                                href="javascript:void(0);">3</a></span><span class="date nm"><a
-                                                href="javascript:void(0);">4</a></span><span class="date nm"><a
-                                                href="javascript:void(0);">5</a></span><span class="date nm"><a
-                                                href="javascript:void(0);">6</a></span><span class="date nm"><a
-                                                href="javascript:void(0);">7</a></span></span></section>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
+                    <img th:src="${mainUser.getAvatar()}" width="70px" style="border-radius: 50%">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th th:text="${mainUser.fullName}"></th>
+                        </tr>
+                        <tr>
+                            <th th:text="${mainUser.phoneNumber}"></th>
+                        </tr>
+                        <tr>
+                            <th th:text="${mainUser.email}"></th>
+                        </tr>
+                        <tr>
+                            <th th:text="${mainUser.address}"></th>
+                        </tr>
+                        <tr>
+                            <th th:text="${mainUser.gender}"></th>
+                        </tr>
+                        <tr>
+                            <th th:text="${mainUser.job}"></th>
+                        </tr>
+                        </thead>
                     </table>
                 </div>
             </div>
@@ -223,21 +150,24 @@
         <div class="right_side_bar col">
             <div class="right_sidebar_iner">
                 <div class="popular_posts">
-                    <h3 class="categories_tittle">Danh sách User</h3>
-                    <div class="row valign-wrapper popular_item">
-                        <div class="col s3 p_img">
-                            <a href="#">
-                                <img src="./templateHomePage_files/recent-post-1.jpg"
-                                     class="circle responsive-img">
-                            </a>
-                        </div>
-                        <div class="col s9 p_content">
-                            <a href="#">Nguyễn văn
-                                A</a>
+                    <div class="categories" th:object="${mainUser}">
+                        <h3 class="categories_tittle">Danh sách người dùng</h3>
+                        <div th:each="u:${listUser}">
+                            <div class="row">
+                                <div class="col-2">
+                                    <a href="#">
+                                        <img th:src="${u.getAvatar()}" width="50px" style="border-radius: 50%">
+                                    </a>
+                                </div>
+                                <div class="col-10">
+                                    <a th:href="@{/users/friend/__${u.getId()}__}" style="margin: 10px">
+                                        <th:block th:text="${u.fullName}"></th:block>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -249,9 +179,7 @@
                 <div class="copyright text-center">
                     <i class="fa fa-heart"></i>
                     <p>Chúc cả lớp deal lương 10 củ </p><i class="fa fa-heart"></i>
-                    <p>Hello C0620k1 <i class="fa fa-heart"></i> Case Study 4 <a target="_blank"
-                                                                                 href="#">
-                        by </a>MauLong-ThuongTran-AnhVan</p>
+                    <p>Hello C0620k1 ♥ Case Study 4 ♥ MauLong-ThuongTran-AnhVan</p>
                 </div>
             </div>
         </div>

@@ -47,23 +47,30 @@ public class PostController {
         String mApiSecret = "aHfm4-P3L-byZX4H8SQqYUfmZvc";
         Cloudinary cloudinary = new Cloudinary("cloudinary://" + mApiKey + ":" + mApiSecret + "@" + mCloudName);
         @PostMapping("/create")
-        public String createPost (@ModelAttribute Post post){
-        try {
-            MultipartFile postImgFile = post.getImgFile();
-            File postImg = Files.createTempFile("temp", postImgFile.getOriginalFilename()).toFile();
-            postImgFile.transferTo(postImg);
-            Map responseAV = cloudinary.uploader().upload(postImg, ObjectUtils.emptyMap());
-            JSONObject jsonAV = new JSONObject(responseAV);
-            String urlAV = jsonAV.getString("url");
-            post.setImg(urlAV);
-            post.setUsers(usersService.findByUsersName(getPrincipal()));
-            post.setCreateTime(new Timestamp(System.currentTimeMillis()));
-            postService.save(post);
+        public String createPost (@ModelAttribute Post post) {
+            if(!post.getImgFile().isEmpty()){
+                MultipartFile postImgFile = post.getImgFile();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                try {
+                    File postImg = Files.createTempFile("temp", postImgFile.getOriginalFilename()).toFile();
+                    postImgFile.transferTo(postImg);
+                    Map responseAV = cloudinary.uploader().upload(postImg, ObjectUtils.emptyMap());
+                    JSONObject jsonAV = new JSONObject(responseAV);
+                    String urlAV = jsonAV.getString("url");
+                    post.setImg(urlAV);
+                    post.setUsers(usersService.findByUsersName(getPrincipal()));
+                    post.setCreateTime(new Timestamp(System.currentTimeMillis()));
+                    postService.save(post);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                post.setUsers(usersService.findByUsersName(getPrincipal()));
+                post.setCreateTime(new Timestamp(System.currentTimeMillis()));
+                postService.save(post);
+            }
+
             return "redirect:/homepage";
         }
-
     }
