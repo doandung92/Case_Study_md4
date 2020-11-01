@@ -2,7 +2,9 @@ package com.example.demo.service.commentService;
 
 import com.example.demo.model.article.Comment;
 import com.example.demo.model.article.Post;
+import org.springframework.data.domain.Page;;
 
+import java.awt.print.Pageable;
 import java.util.Optional;
 
 public interface ICommentService {
@@ -10,5 +12,5 @@ public interface ICommentService {
     void save (Comment comment);
     Optional<Comment> findById(Long id);
     Comment remove(Long id);
-    Iterable findByPost(Post post);
+    Page<Comment> findByPost(Post post, Pageable pageable);
 }

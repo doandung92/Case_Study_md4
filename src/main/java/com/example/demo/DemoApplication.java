@@ -13,17 +13,5 @@ public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
-//    @Autowired
-//        Environment environment;
-//
-//        @Override
-//        public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//
-//            String fileUpload = environment.getProperty("file_upload").toString();
-//
-//            // Image resource9.
-//            registry.addResourceHandler("/i/**") //
-//                    .addResourceLocations("file:" + fileUpload);
-//    }
 
 }

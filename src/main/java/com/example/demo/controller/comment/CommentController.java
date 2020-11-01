@@ -7,6 +7,9 @@ import com.example.demo.service.commentService.ICommentService;
 import com.example.demo.service.post.IPostService;
 import com.example.demo.service.user.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,7 @@ public class CommentController {
     private IUsersService usersService;
     @Autowired
     private ICommentService commentService;
+
     private String getPrincipal() {
 
         String userName = null;
@@ -37,21 +41,26 @@ public class CommentController {
     }
 
     @GetMapping("/commentPage/{id}")
-    public String commentPage(@PathVariable Long id, Model model) {
+    public String commentPage(@PathVariable Long id, Model model, @PageableDefault(size = 10) Pageable pageable) {
+        Page<Comment> comments;
         Post post = postService.findById(id).get();
-//        Users mainUsers = usersService.findById(usersService.findByUsersName(getPrincipal()).getId()).get();
         Users mainUsers = usersService.findByUsersName(getPrincipal());
-        Iterable<Comment> comments = commentService.findByPost(post); // findbyid
-        model.addAttribute("mainUser",mainUsers);
+        comments = commentService.findByPost(post, (java.awt.print.Pageable) pageable);
+        model.addAttribute("mainUser", mainUsers);
         model.addAttribute("post", post);
-        model.addAttribute("comment",new Comment());
-//        model.addAttribute("comments",comments);
+        model.addAttribute("comment", new Comment());
+        model.addAttribute("comments",comments);
         return "commentPage";
     }
-    @PostMapping("/create")
-    public String createComment(@ModelAttribute("comment") Comment comment){
-//            comment.setPost(post);
-            commentService.save(comment);
-        return "redirect:/homepage";
+
+    @PostMapping("/create/{id}")
+    public String createComment(@ModelAttribute("comment") Comment comment, @PathVariable Long id,RedirectAttributes redirectAttributes) {
+        Post post = postService.findById(id).get();
+        Users mainUsers = usersService.findByUsersName(getPrincipal());
+        System.out.println(id + "--------------------");
+        comment.setPost(post);
+        comment.setUsers(mainUsers);
+        commentService.save(comment);
+        return "redirect:/comment/commentPage/"+id;
     }
 }

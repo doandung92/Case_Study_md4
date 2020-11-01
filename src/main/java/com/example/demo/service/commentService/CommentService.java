@@ -4,6 +4,8 @@ import com.example.demo.model.article.Comment;
 import com.example.demo.model.article.Post;
 import com.example.demo.repo.comment.ICommentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -35,7 +37,8 @@ public class CommentService implements ICommentService {
     }
 
     @Override
-    public Iterable findByPost(Post post) {
-        return commentRepo.findByPost(post);
+    public Page<Comment> findByPost(Post post, java.awt.print.Pageable pageable) {
+        return commentRepo.findByPost(post, (Pageable) pageable);
     }
+
 }

@@ -99,14 +99,15 @@
                     <hr>
                     <div class="row">
                         <div class="col-2">
+                            <img th:src="@{${mainUser.getAvatar()}}" width="50px" style="border-radius: 50%; margin: 20px">
                         </div>
                         <div class="col-10">
-                            <form th:action="@{/comment/create}" method="post">
+                            <form th:action="@{/comment/create/__${post.getId()}__}" method="post">
                                 <div class="row" >
-                                    <div class="col-2"> <input type="text" class="form-control" id="exampleInputPassword1"
+                                    <div class="col-10"> <input type="text" class="form-control" id="exampleInputPassword1"
                                                                placeholder="comment" th:field="*{content}">
                                     </div>
-                                    <div class="col-10"><input type="submit" class="btn btn-secondary"></div>
+                                    <div class="col-2"><input type="submit" class="btn btn-secondary"></div>
                                 </div>
                             </form>
                         </div>
@@ -115,8 +116,31 @@
         </div>
         <div class="middle_section col">
             <div style="position: fixed;right: 200px;top: 100px">
-                <div style="width: 500px; height: 500px;background-color: white;text-align: center;border-radius: 10px"
-                     class="border border-warning"></div>
+                <div style="width: 600px; height: 600px;background-color: white;text-align: center;border-radius: 10px"
+                     class="border border-warning">
+                    <th:block><h4>Comment Area</h4></th:block>
+                    <tbody>
+                    <div th:each="cmt:${comments}">
+                        <div class="row" style="margin: 20px">
+                            <div class="col-4">
+                                <img th:src="${cmt.getUsers().getAvatar()}" style="border-radius: 50%" width="30px">
+                                <th:block th:text="${cmt.getUsers().getFullName()}"></th:block>
+                            </div>
+                            <div class="col-8">
+                                <div class="border border-warning" style="background-color: silver;border-radius: 10px">
+                                    <th:block th:text="${cmt.getContent()}"></th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div>-->
+<!--                        <a th:href="@{'/comment/'+${post.getId()}(page=${comments.number - 1},c=${c})}" th:if="${comments.hasPrevious()}">trước</a>-->
+<!--                        <span th:text="${comments.number + 1}"></span>/<span th:text="${comments.totalPages}"></span>-->
+<!--                        <a th:href="@{'/comment'+${post.getId()(page=${comments.number + 1},c=${c})}" th:if="${comments.hasNext()}">sau</a>-->
+<!--                    </div>-->
+                    </tbody>
+
+                </div>
             </div>
         </div>
     </div>
