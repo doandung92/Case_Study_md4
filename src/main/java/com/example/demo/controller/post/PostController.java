@@ -2,7 +2,10 @@ package com.example.demo.controller.post;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.example.demo.model.article.Comment;
 import com.example.demo.model.article.Post;
+import com.example.demo.model.user.Users;
+import com.example.demo.service.commentService.ICommentService;
 import com.example.demo.service.post.IPostService;
 import com.example.demo.service.user.IUsersService;
 import org.cloudinary.json.JSONObject;
@@ -29,48 +32,52 @@ public class PostController {
 
     @Autowired
     private IUsersService usersService;
+    @Autowired
+    private ICommentService commentService;
 
-    private String getPrincipal(){
+    private String getPrincipal() {
 
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
+            userName = ((UserDetails) principal).getUsername();
         } else {
             userName = principal.toString();
         }
         return userName;
     }
-        String mCloudName = "dtcimirzt";
-        String mApiKey = "997964747139867";
-        String mApiSecret = "aHfm4-P3L-byZX4H8SQqYUfmZvc";
-        Cloudinary cloudinary = new Cloudinary("cloudinary://" + mApiKey + ":" + mApiSecret + "@" + mCloudName);
-        @PostMapping("/create")
-        public String createPost (@ModelAttribute Post post) {
-            if(!post.getImgFile().isEmpty()){
-                MultipartFile postImgFile = post.getImgFile();
 
-                try {
-                    File postImg = Files.createTempFile("temp", postImgFile.getOriginalFilename()).toFile();
-                    postImgFile.transferTo(postImg);
-                    Map responseAV = cloudinary.uploader().upload(postImg, ObjectUtils.emptyMap());
-                    JSONObject jsonAV = new JSONObject(responseAV);
-                    String urlAV = jsonAV.getString("url");
-                    post.setImg(urlAV);
-                    post.setUsers(usersService.findByUsersName(getPrincipal()));
-                    post.setCreateTime(new Timestamp(System.currentTimeMillis()));
-                    postService.save(post);
+    String mCloudName = "dtcimirzt";
+    String mApiKey = "997964747139867";
+    String mApiSecret = "aHfm4-P3L-byZX4H8SQqYUfmZvc";
+    Cloudinary cloudinary = new Cloudinary("cloudinary://" + mApiKey + ":" + mApiSecret + "@" + mCloudName);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }else{
+    @PostMapping("/create")
+    public String createPost(@ModelAttribute Post post) {
+        if (!post.getImgFile().isEmpty()) {
+            MultipartFile postImgFile = post.getImgFile();
+
+            try {
+                File postImg = Files.createTempFile("temp", postImgFile.getOriginalFilename()).toFile();
+                postImgFile.transferTo(postImg);
+                Map responseAV = cloudinary.uploader().upload(postImg, ObjectUtils.emptyMap());
+                JSONObject jsonAV = new JSONObject(responseAV);
+                String urlAV = jsonAV.getString("url");
+                post.setImg(urlAV);
                 post.setUsers(usersService.findByUsersName(getPrincipal()));
                 post.setCreateTime(new Timestamp(System.currentTimeMillis()));
                 postService.save(post);
-            }
 
-            return "redirect:/homepage";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            post.setUsers(usersService.findByUsersName(getPrincipal()));
+            post.setCreateTime(new Timestamp(System.currentTimeMillis()));
+            postService.save(post);
         }
+        return "redirect:/homepage";
     }
+
+}

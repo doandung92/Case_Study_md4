@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    .fa {
+        font-size: 50px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .fa:hover {
+        color: darkblue;
+    }
+</style>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mạng xã hội</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="http://uxart.io/downloads/openlist-html/all-template/images/favicon.png" type="image/x-icon">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="/templateHomePage_files/materialize.min.css">
+    <!-- Tooltip CSS -->
+    <link rel="stylesheet" href="/templateHomePage_files/balloon.min.css">
+    <!-- Icon CSS-->
+    <link rel="stylesheet" href="/templateHomePage_files/ionicons.min.css">
+    <link rel="stylesheet" href="/templateHomePage_files/font-awesome.min.css">
+    <link href="/templateHomePage_files/icon" rel="stylesheet">
+    <!-- Calendar CSS-->
+    <link rel="stylesheet" href="/templateHomePage_files/dcalendar.picker.css">
+
+    <!--Theme Styles CSS-->
+    <link rel="stylesheet" href="/templateHomePage_files/style.css" media="all">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<nav class="header_area">
+    <div class="custom_container">
+        <div class="nav-wrapper">
+            <a href="/homepage" class="brand-logo"><img
+                    src="/templateHomePage_files/logo.png"></a>
+            <ul class="left_menu hide-on-med-and-down">
+                <li><a href="/homepage">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+            <ul class="right right_menu hide-on-med-and-down">
+                <li class="search_min">
+                    <div class="search_from">
+                        <input placeholder="Search Here" type="text">
+                        <a href="#" class="search_icon"></a>
+                    </div>
+                    <!-- Profile -->
+                <li class="user_dropdown"><a class="dropdown-button"
+                                             href="/profile"
+                                             data-activates="dropdown1"><img
+                        src="/templateHomePage_files/profile-pic.png" class="circle p_2"></a>
+                    <ul id="dropdown1" class="dropdown-content">
+                        <li><a href="/profile">My profile</a></li>
+                        <li><a href="/logout">Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="min_container min_container_2">
+    <div class="section_row">
+        <div class="middle_section col">
+<!--            <div class="border border-warning" style="background-color: white; border-radius: 10px; margin-top: 20px"-->
+<!--                 th:object="${post}">-->
+<!--                <div style="margin: 20px">-->
+<!--                    <img th:src="${post.users.getAvatar()}" width="70px" style="border-radius: 50%">-->
+<!--                    <span><strong>-->
+<!--                            <th:block th:text="${post.users.getFullName()}"></th:block>-->
+<!--                        </strong></span>-->
+<!--                </div>-->
+<!--                <div style="margin: 20px">-->
+<!--                    <th:block th:text="${post.content}"></th:block>-->
+<!--                </div>-->
+<!--                <div th:if="${post.getImg()}">-->
+<!--                    <img th:src="${post.getImg()}"-->
+<!--                         width="500px" height="500px" style="margin: 20px">-->
+<!--                </div>-->
+<!--                <hr>-->
+<!--                <div style="margin: 20px">-->
+<!--                    <i class="fa fa-comments" width="50px"></i>-->
+<!--                </div>-->
+<!--                <hr>-->
+                <div class="row">
+<!--                    <div class="col-2">-->
+<!--                        <img th:src="${mainUser.getAvatar()}"-->
+<!--                             width="20" height="20" style="border-radius: 50%; margin: 20px">-->
+<!--                    </div>-->
+                    <div class="col-10">
+                        <form th:action="@{/comment/create}" method="post">
+<!--                            <input type="text" class="form-control" id="exampleInputPassword1"-->
+<!--                                   placeholder="comment" th:field="*{${comment.content}}">-->
+<!--                            <input type="text" th:field="*{${mainUser.getId()}}">-->
+<!--                            <input type="text" th:field="*{${post.getId()}}">-->
+                            <input type="submit" class="btn btn-secondary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        <div class="middle_section col">-->
+<!--            <div style="position: fixed;right: 200px;top: 100px">-->
+<!--                <div style="width: 500px; height: 500px;background-color: white;text-align: center;border-radius: 10px"-->
+<!--                     class="border border-warning"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</section>
+<footer id="footer" class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright text-center">
+                    <i class="fa fa-heart"></i>
+                    <p>Chúc cả lớp deal lương 10 củ </p><i class="fa fa-heart"></i>
+                    <p>Hello C0620k1 ♥ Case Study 4 ♥ MauLong-ThuongTran-AnhVan</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- jQuery JS -->
+<script src="/templateHomePage_files/jquery-3.3.1.min.js.tải xuống"></script>
+<!-- Materialize JS -->
+<script src="/templateHomePage_files/materialize.min.js.tải xuống"></script>
+<!-- Calendar JS -->
+<script src="/templateHomePage_files/dcalendar.picker.js.tải xuống"></script>
+<!-- Load JS -->
+<script src="/templateHomePage_files/jquery.jscroll.js.tải xuống"></script>
+<!-- Check Button js -->
+<script src="/templateHomePage_files/jquery.jqflipswitch.min.js.tải xuống"></script>
+<script src="/templateHomePage_files/jquery.jqflipswitch.js.tải xuống"></script>
+<!-- Theme JS -->
+<script src="/templateHomePage_files/theme.js.tải xuống"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="../static/ckeditor/ckeditor.js"></script>
+<!--<script>-->
+<!--    function myFunction() {-->
+<!--        document.getElementById("like").style.color = 'orange';-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>

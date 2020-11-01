@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <!-- saved from url=(0065)http://uxart.io/downloads/openlist-html/all-template/details.html -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    .fa {
+        font-size: 50px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .fa:hover {
+        color: darkblue;
+    }
+</style>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -11,26 +22,26 @@
     <!-- Favicon -->
     <link rel="icon" href="http://uxart.io/downloads/openlist-html/all-template/images/favicon.png" type="image/x-icon">
     <!-- Materialize CSS -->
-    <link rel="stylesheet" href="./templateHomePage_files/materialize.min.css">
+    <link rel="stylesheet" href="/templateHomePage_files/materialize.min.css">
     <!-- Tooltip CSS -->
-    <link rel="stylesheet" href="./templateHomePage_files/balloon.min.css">
+    <link rel="stylesheet" href="/templateHomePage_files/balloon.min.css">
     <!-- Icon CSS-->
-    <link rel="stylesheet" href="./templateHomePage_files/ionicons.min.css">
-    <link rel="stylesheet" href="./templateHomePage_files/font-awesome.min.css">
-    <link href="./templateHomePage_files/icon" rel="stylesheet">
+    <link rel="stylesheet" href="/templateHomePage_files/ionicons.min.css">
+    <link rel="stylesheet" href="/templateHomePage_files/font-awesome.min.css">
+    <link href="/templateHomePage_files/icon" rel="stylesheet">
     <!-- Calendar CSS-->
-    <link rel="stylesheet" href="./templateHomePage_files/dcalendar.picker.css">
-
+    <link rel="stylesheet" href="/templateHomePage_files/dcalendar.picker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--Theme Styles CSS-->
-    <link rel="stylesheet" href="./templateHomePage_files/style.css" media="all">
+    <link rel="stylesheet" href="/templateHomePage_files/style.css" media="all">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -39,7 +50,7 @@
     <div class="custom_container">
         <div class="nav-wrapper">
             <a href="/homepage" class="brand-logo"><img
-                    src="./templateHomePage_files/logo.png"></a>
+                    src="/templateHomePage_files/logo.png"></a>
             <ul class="left_menu hide-on-med-and-down">
                 <li><a href="/homepage">Home</a></li>
                 <li><a href="/profile">Profile</a></li>
@@ -54,7 +65,7 @@
                 <li class="user_dropdown"><a class="dropdown-button"
                                              href="/profile"
                                              data-activates="dropdown1"><img
-                        src="./templateHomePage_files/profile-pic.png" class="circle p_2"></a>
+                        src="/templateHomePage_files/profile-pic.png" class="circle p_2"></a>
                     <ul id="dropdown1" class="dropdown-content">
                         <li><a href="/profile">My profile</a></li>
                         <li><a href="/logout">Log out</a></li>
@@ -86,29 +97,40 @@
                 <div th:each="p:${posts}" class="border border-warning"
                      style="background-color: white; border-radius: 10px; margin-top: 20px">
                     <div style="margin: 20px">
-                        <img th:src="${p.users.getAvatar()}"
-                             width="70px" style="border-radius: 50%">
+                        <img th:src="${p.users.getAvatar()}" width="70px" style="border-radius: 50%">
                         <span><strong>
                             <th:block th:text="${p.getUsers().getFullName()}"></th:block>
                         </strong></span>
                     </div>
                     <div class="col" style="margin-top: 20px">
                         <div>
-                            <div style="margin-top: 20px">
+                            <div style="margin-top: 20px" >
                                 <th:block th:text="${p.getContent()}"></th:block>
                             </div>
-                            <div th:if="${p.getImg()}">
+                            <div th:if="${p.getImg()}" style="margin-top: 20px">
                                 <img th:src="${p.getImg()}"
                                      width="500px" height="500px">
                             </div>
                             <hr>
                             <div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i onclick="myFunction()" class="fa fa-thumbs-up" id="like" width="50px"></i>
+                                    </div>
+                                    <div class="col">
+                                        <a th:href="@{/comment/commentPage/__${p.getId()}__}" style="color: black">
+                                            <i class="fa fa-comments" width="50px"></i>
+                                        </a>
+
+                                    </div>
+                                </div>
                                 <img th:src="${mainUser.getAvatar()}"
                                      width="20" height="20" style="border-radius: 50%">
                                 <input type="text" class="form-control" id="exampleInputPassword1"
                                        placeholder="comment">
+<!--                                cmt-->
+
                             </div>
-                            <div class="border border-warning" style="background-color: black">abc</div>
                         </div>
                     </div>
                 </div>
@@ -188,18 +210,18 @@
 
 
 <!-- jQuery JS -->
-<script src="./templateHomePage_files/jquery-3.3.1.min.js.tải xuống"></script>
+<script src="/templateHomePage_files/jquery-3.3.1.min.js.tải xuống"></script>
 <!-- Materialize JS -->
-<script src="./templateHomePage_files/materialize.min.js.tải xuống"></script>
+<script src="/templateHomePage_files/materialize.min.js.tải xuống"></script>
 <!-- Calendar JS -->
-<script src="./templateHomePage_files/dcalendar.picker.js.tải xuống"></script>
+<script src="/templateHomePage_files/dcalendar.picker.js.tải xuống"></script>
 <!-- Load JS -->
-<script src="./templateHomePage_files/jquery.jscroll.js.tải xuống"></script>
+<script src="/templateHomePage_files/jquery.jscroll.js.tải xuống"></script>
 <!-- Check Button js -->
-<script src="./templateHomePage_files/jquery.jqflipswitch.min.js.tải xuống"></script>
-<script src="./templateHomePage_files/jquery.jqflipswitch.js.tải xuống"></script>
+<script src="/templateHomePage_files/jquery.jqflipswitch.min.js.tải xuống"></script>
+<script src="/templateHomePage_files/jquery.jqflipswitch.js.tải xuống"></script>
 <!-- Theme JS -->
-<script src="./templateHomePage_files/theme.js.tải xuống"></script>
+<script src="/templateHomePage_files/theme.js.tải xuống"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -210,5 +232,10 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 <script src="../static/ckeditor/ckeditor.js"></script>
+<!--<script>-->
+<!--    function myFunction() {-->
+<!--        document.getElementById("like").style.color = 'orange';-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>

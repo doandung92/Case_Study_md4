@@ -5,6 +5,8 @@ import com.example.demo.repo.post.IPostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PostService implements IPostService {
     @Autowired
@@ -22,5 +24,10 @@ public class PostService implements IPostService {
     @Override
     public void remove(Long id) {
          repo.deleteById(id);
+    }
+
+    @Override
+    public Optional<Post> findById(Long id) {
+        return repo.findById(id);
     }
 }

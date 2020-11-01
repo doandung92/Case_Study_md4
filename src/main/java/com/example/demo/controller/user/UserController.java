@@ -72,9 +72,6 @@ public class UserController {
             Map responseAV=c.uploader().upload(avFile, ObjectUtils.emptyMap());
             JSONObject jsonAV=new JSONObject(responseAV);
             String urlAV=jsonAV.getString("url");
-            System.out.println(urlAV+"------------------");
-            System.out.println("lam thon");
-            System.out.println(urlAV);
             users.setAvatar(urlAV);
             users.setModifiedDate(new Timestamp(System.currentTimeMillis()));
         }catch (Exception e){
@@ -89,7 +86,7 @@ public class UserController {
     public ModelAndView friendProfile(@PathVariable Long id){
         ModelAndView modelAndView = new ModelAndView("/friendProfile");
         Users users = usersService.findById(id).get();
-        modelAndView.addObject("users",users);
+        modelAndView.addObject("friend",users);
         return modelAndView;
     }
 
