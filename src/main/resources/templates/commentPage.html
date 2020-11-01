@@ -77,49 +77,48 @@
 <section class="min_container min_container_2">
     <div class="section_row">
         <div class="middle_section col">
-<!--            <div class="border border-warning" style="background-color: white; border-radius: 10px; margin-top: 20px"-->
-<!--                 th:object="${post}">-->
-<!--                <div style="margin: 20px">-->
-<!--                    <img th:src="${post.users.getAvatar()}" width="70px" style="border-radius: 50%">-->
-<!--                    <span><strong>-->
-<!--                            <th:block th:text="${post.users.getFullName()}"></th:block>-->
-<!--                        </strong></span>-->
-<!--                </div>-->
-<!--                <div style="margin: 20px">-->
-<!--                    <th:block th:text="${post.content}"></th:block>-->
-<!--                </div>-->
-<!--                <div th:if="${post.getImg()}">-->
-<!--                    <img th:src="${post.getImg()}"-->
-<!--                         width="500px" height="500px" style="margin: 20px">-->
-<!--                </div>-->
-<!--                <hr>-->
-<!--                <div style="margin: 20px">-->
-<!--                    <i class="fa fa-comments" width="50px"></i>-->
-<!--                </div>-->
-<!--                <hr>-->
-                <div class="row">
-<!--                    <div class="col-2">-->
-<!--                        <img th:src="${mainUser.getAvatar()}"-->
-<!--                             width="20" height="20" style="border-radius: 50%; margin: 20px">-->
-<!--                    </div>-->
-                    <div class="col-10">
-                        <form th:action="@{/comment/create}" method="post">
-<!--                            <input type="text" class="form-control" id="exampleInputPassword1"-->
-<!--                                   placeholder="comment" th:field="*{${comment.content}}">-->
-<!--                            <input type="text" th:field="*{${mainUser.getId()}}">-->
-<!--                            <input type="text" th:field="*{${post.getId()}}">-->
-                            <input type="submit" class="btn btn-secondary">
-                        </form>
+                <div class="border border-warning"
+                     style="background-color: white; border-radius: 10px; margin-top: 20px" th:object="${comment}">
+                    <div style="margin: 20px">
+                        <img th:src="${post.users.getAvatar()}" width="70px" style="border-radius: 50%">
+                        <span><strong>
+                            <th:block th:text="${post.users.getFullName()}"></th:block>
+                        </strong></span>
+                    </div>
+                    <div style="margin: 20px">
+<!--                        <input type="text" th:field="*{post.getId()}" hidden>-->
+                        <th:block th:text="${post.content}"></th:block>
+                    </div>
+                    <div th:if="${post.getImg()}">
+                        <img th:src="${post.getImg()}" width="500px" height="500px" style="margin: 20px">
+                    </div>
+                    <hr>
+                    <div style="margin: 20px">
+                        <i class="fa fa-comments" width="50px"></i>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-2">
+                        </div>
+                        <div class="col-10">
+                            <form th:action="@{/comment/create}" method="post">
+                                <div class="row" >
+                                    <div class="col-2"> <input type="text" class="form-control" id="exampleInputPassword1"
+                                                               placeholder="comment" th:field="*{content}">
+                                    </div>
+                                    <div class="col-10"><input type="submit" class="btn btn-secondary"></div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
+        </div>
+        <div class="middle_section col">
+            <div style="position: fixed;right: 200px;top: 100px">
+                <div style="width: 500px; height: 500px;background-color: white;text-align: center;border-radius: 10px"
+                     class="border border-warning"></div>
             </div>
         </div>
-<!--        <div class="middle_section col">-->
-<!--            <div style="position: fixed;right: 200px;top: 100px">-->
-<!--                <div style="width: 500px; height: 500px;background-color: white;text-align: center;border-radius: 10px"-->
-<!--                     class="border border-warning"></div>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
 </section>
 <footer id="footer" class="footer">
